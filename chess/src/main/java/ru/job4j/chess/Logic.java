@@ -23,9 +23,9 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
-        for (int i = 0; i < figures.length; i++) {
-            for (int j = 0; j < steps.length; j++) {
-                if (figures[i].equals(steps[j])) {
+        for (Figure figure : figures) {
+            for (Cell step : steps) {
+                if (figure.equals(step)) {
                     throw new OccupiedCellException();
                 }
             }
@@ -45,6 +45,6 @@ public final class Logic {
                 return index;
             }
         }
-        throw new FigureNotFoundException();
+        throw new FigureNotFoundException("Фигура не найдена");
     }
 }

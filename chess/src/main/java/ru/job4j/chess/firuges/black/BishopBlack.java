@@ -17,7 +17,7 @@ public class BishopBlack implements Figure {
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        return Math.abs(source.getX()-dest.getX()) == Math.abs(source.getY()-dest.getY());
+        return Math.abs(source.getX() - dest.getX()) == Math.abs(source.getY() - dest.getY());
     }
 
     @Override
@@ -27,19 +27,22 @@ public class BishopBlack implements Figure {
                     String.format("Could not way by diagonal from %s to %s", position, dest)
             );
         }
-        int size = Math.abs(position().getX()-dest.getX());
+        int size = Math.abs(position().getX() - dest.getX());
         Cell[] steps = new Cell[size];
-        int deltaX = position().getX() > dest.getX()? -1:1;;
-        int deltaY = position().getY() > dest.getY()? -1:1;
+
+        int deltaX = position().getX() > dest.getX() ? -1 : 1;
+        int deltaY = position().getY() > dest.getY() ? -1 : 1;
+        int dx = deltaX;
+        int dy = deltaY;
         for (int index = 0; index < size; index++) {
-            int x = position().getX() + index + deltaX;
-            int y = position().getY() + -1*index + deltaY;
+            int x = position().getX() + deltaX;
+            deltaX = deltaX + dx;
+            int y = position().getY() + deltaY;
+            deltaY = deltaY + dy;
             steps[index] =  Cell.findBy(x, y);
         }
         return steps;
     }
-
-
 
     @Override
     public Figure copy(Cell dest) {

@@ -35,6 +35,13 @@ public class BishopBlackTest {
        assertEquals(excepted, Arrays.toString(bishopBlack.way(Cell.G5)));
     }
 
+    @Test
+    public void backWay() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.G5);
+        String excepted = ("[F4, E3, D2, C1]");
+        assertEquals(excepted, Arrays.toString(bishopBlack.way(Cell.C1)));
+    }
+
     @Test (expected = ImpossibleMoveException.class)
     public void noWay() {
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
